@@ -1,26 +1,9 @@
-/* Edge Impulse Arduino examples
- * Copyright (c) 2021 EdgeImpulse Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
+// Handwriting Recogniser with ToF Sensor & Edge Impulse
+// Adapted from Edge Impulse Static Buffer Example
+// Author: Jonathan Tan
+// Feb 2021
+// Written for Seeed Wio Terminal
 
-/* Includes ---------------------------------------------------------------- */
 #include <wio_terminal_handwriting_recogniser_inference.h>
 #include "Seeed_vl53l0x.h"
 Seeed_vl53l0x VL53L0X;
@@ -33,25 +16,11 @@ Seeed_vl53l0x VL53L0X;
 
 static float features[25];
 
-/**
- * @brief      Copy raw feature data in out_ptr
- *             Function called by inference library
- *
- * @param[in]  offset   The offset
- * @param[in]  length   The length
- * @param      out_ptr  The out pointer
- *
- * @return     0
- */
 int raw_feature_get_data(size_t offset, size_t length, float *out_ptr) {
     memcpy(out_ptr, features + offset, length * sizeof(float));
     return 0;
 }
 
-
-/**
- * @brief      Arduino setup function
- */
 void setup()
 {
     // put your setup code here, to run once:
@@ -73,12 +42,10 @@ void setup()
         while (1);
     }
     
-    Serial.println("Edge Impulse Inferencing Demo");
+    Serial.println("Wio Terminal Handwriting Recogniser!");
 }
 
-/**
- * @brief      Arduino main function
- */
+
 void loop()
 {   
     Serial.print("Perform gesture in 3... ");
